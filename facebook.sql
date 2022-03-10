@@ -41,3 +41,4 @@ from FACEBOOK;
 select count(*),age
 from FACEBOOK
 group by age;
+
