@@ -1,52 +1,23 @@
---1. Find Total users in social media above age 15?
 
-CREATE OR REPLACE PROCEDURE
-COUNTOFUSERS
-IS
-    U_COUNT NUMBER;
-BEGIN
-    SELECT 
-        COUNT(*) 
-    INTO 
-        U_COUNT 
-    FROM 
-        FACEBOOK
-    WHERE 
-        AGE>15;
-    DBMS_OUTPUT.PUT_LINE(U_COUNT);
-END;
-/
-
-BEGIN
-COUNTOFUSERS();
-END;
-/
-
---2. Find the total Male users in social media?
-
+--1. TOTAL MALE USERS IN SOCIAL MEDIA?
 CREATE OR REPLACE PROCEDURE
 COUNTOFMALE
 IS
-    U_COUNT NUMBER;
+ U_COUNT NUMBER;
 BEGIN
-    SELECT 
-        COUNT(*) 
-    INTO 
-        U_COUNT 
-    FROM 
-        FACEBOOK
-    WHERE 
-        GENDER='male';
-    DBMS_OUTPUT.PUT_LINE(U_COUNT);
+ SELECT
+ COUNT(*)
+ INTO
+ U_COUNT
+ FROM
+ FACEBOOK
+ WHERE
+ GENDER='male';
+ DBMS_OUTPUT.PUT_LINE(U_COUNT);
 END;
 /
 
-BEGIN
-COUNTOFMALE();
-END;
-/
-
---3. Find the Total Female users above age 18?
+--2. TOTAL FEMALE USERS ABOVE AGE 18?
 
 CREATE OR REPLACE PROCEDURE
 COUNTOFFEMALE
@@ -70,31 +41,8 @@ COUNTOFFEMALE();
 END;
 /
 
---4. Find the Tolal users who are born in the year 1999?
 
-CREATE OR REPLACE PROCEDURE
-COUNTOFFEMALE
-IS
-    U_COUNT NUMBER;
-BEGIN
-    SELECT 
-        COUNT(*) 
-    INTO 
-        U_COUNT 
-    FROM 
-        FACEBOOK
-    WHERE 
-        GENDER='female' AND AGE>18;
-    DBMS_OUTPUT.PUT_LINE(U_COUNT);
-END;
-/
-
-BEGIN
-COUNTOFFEMALE();
-END;
-/
-
---5. Count the total users born each year?
+--3. COUNT OF SOCIAL MEDIA USERS OF EACH AGE?
 
 CREATE OR REPLACE PROCEDURE
 TOTAL_EACH_YEAR
@@ -117,118 +65,21 @@ TOTAL_EACH_YEAR();
 END;
 /
 
---6. Count the Male users above age 15?
 
-CREATE OR REPLACE PROCEDURE
-MALEUSERS
-IS
-    U_COUNT NUMBER;
-BEGIN
-    SELECT 
-        COUNT(*) 
-    INTO 
-        U_COUNT 
-    FROM 
-        FACEBOOK
-    WHERE 
-        GENDER='male' AND AGE>15;
-    DBMS_OUTPUT.PUT_LINE(U_COUNT);
-END;
-/
-
-BEGIN
-MALEUSERS();
-END;
-/
-
---7. Count the social media users of each age?
+--4. COUNT OF LIST OF USERS IN EACH AGE?
 
 CREATE OR REPLACE PROCEDURE
 TOTAL_EACH_AGE
 IS
 BEGIN
-    FOR I IN(
-    SELECT 
-        AGE,COUNT(*) AS COUNT_AGE
-    FROM 
-        FACEBOOK
-    GROUP BY AGE)
-    LOOP
-    DBMS_OUTPUT.PUT_LINE(I.AGE|| ':' ||I.COUNT_AGE);
-    END LOOP;
-END;
-/
-
-BEGIN
-TOTAL_EACH_AGE();
-END;
-/
-
---8. Find the percentage of female users using above age 17?
-
-CREATE OR REPLACE PROCEDURE
-FEMALEPERCENTAGE
-IS
-    PERCENT NUMBER;
-BEGIN
-    SELECT 
-        ROUND(100.0*SUM(CASE WHEN GENDER='female' THEN 1 ELSE 0 END)/COUNT(*),2) FEMALE_PERC 
-    INTO 
-        PERCENT 
-    FROM 
-        FACEBOOK
-    WHERE 
-        AGE>17;
-    DBMS_OUTPUT.PUT_LINE(PERCENT);
-END;
-/
-
-BEGIN
-FEMALEPERCENTAGE();
-END;
-/
-
---9. Find the percentage of female users who are using social media?
-
-CREATE OR REPLACE PROCEDURE
-FEMALEPERCENT
-IS
-    PERCENT NUMBER;
-BEGIN
-    SELECT 
-        ROUND(100.0*SUM(CASE WHEN GENDER='female' THEN 1 ELSE 0 END)/COUNT(*),2) FEMALE_PERC 
-    INTO 
-        PERCENT 
-    FROM 
-        FACEBOOK;
-    DBMS_OUTPUT.PUT_LINE(PERCENT);
-END;
-/
-
-BEGIN
-FEMALEPERCENT();
-END;
-/
-
---10. Count the list of users in each age?
-
-CREATE OR REPLACE PROCEDURE
-TOTAL_EACH_AGE
-IS
-BEGIN
-    FOR I IN(
-    SELECT 
-        AGE,COUNT(*) AS COUNT_AGE
-    FROM 
-        FACEBOOK
-    GROUP BY AGE)
-    LOOP
-    DBMS_OUTPUT.PUT_LINE(I.AGE|| ':' ||I.COUNT_AGE);
-    END LOOP;
-END;
-/
-
-BEGIN
-TOTAL_EACH_AGE();
+ FOR I IN(
+ SELECT
+ AGE,COUNT(*) AS COUNT_AGE
+ FROM
+ FACEBOOK
+ GROUP BY AGE)
+ LOOP
+ DBMS_OUTPUT.PUT_LINE(I.AGE|| ':' ||I.COUNT_AGE);
+ END LOOP;
 END;
 /
