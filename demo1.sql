@@ -1,16 +1,22 @@
 select * from facebook;
 
-select count(*) from facebook where age>15;
+select count(*) from facebook 
+        where age>15;
 
-select count(*) from facebook where gender='male';
+select count(*) from facebook 
+        where gender='male';
 
-select count(*) from facebook where gender='female' and age>18;
+select count(*) from facebook 
+        where gender='female' and age>18;
 
-select count(*) from facebook  where dob_year=1999;
+select count(*) from facebook  
+        where dob_year=1999;
 
-select count(*),dob_year from facebook group by dob_year;
+select count(*),dob_year from facebook 
+        group by dob_year;
 
-select count(*) from facebook where gender='male' and age>15;
+select count(*) from facebook 
+        where gender='male' and age>15;
 
 select count(*),age from facebook group by age;
 
