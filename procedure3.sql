@@ -1,0 +1,113 @@
+--1. Find the total users using social media?
+
+CREATE OR REPLACE PROCEDURE
+TOTALUSERS
+IS
+    U_COUNT NUMBER;
+BEGIN
+    SELECT 
+        COUNT(*) 
+    INTO 
+        U_COUNT 
+    FROM 
+        FACEBOOK;
+    DBMS_OUTPUT.PUT_LINE(U_COUNT);
+END;
+/
+
+BEGIN
+TOTALUSERS();
+END;
+/
+
+--2. Find how many Percentage of Male users use social media?
+
+CREATE OR REPLACE PROCEDURE
+MALEPERCENT
+IS
+    PERCENT NUMBER;
+BEGIN
+    SELECT 
+        ROUND(100.0*SUM(CASE WHEN GENDER='male' THEN 1 ELSE 0 END)/COUNT(*),2) MALE_PERC 
+    INTO 
+        PERCENT 
+    FROM 
+        FACEBOOK;
+    DBMS_OUTPUT.PUT_LINE(PERCENT);
+END;
+/
+
+BEGIN
+MALEPERCENT();
+END;
+/
+
+--3. Find How many Percentages of female users use social media?
+
+CREATE OR REPLACE PROCEDURE
+FEMALEPERCENT
+IS
+    PERCENT NUMBER;
+BEGIN
+    SELECT 
+        ROUND(100.0*SUM(CASE WHEN GENDER='female' THEN 1 ELSE 0 END)/COUNT(*),2) FEMALE_PERC 
+    INTO 
+        PERCENT 
+    FROM 
+        FACEBOOK;
+    DBMS_OUTPUT.PUT_LINE(PERCENT);
+END;
+/
+
+BEGIN
+FEMALEPERCENT();
+END;
+/
+
+--4. Find how many Percentage of Male users age above 15 use social media?
+
+CREATE OR REPLACE PROCEDURE
+MALEPERCENTAGE
+IS
+    PERCENT NUMBER;
+BEGIN
+    SELECT 
+        ROUND(100.0*SUM(CASE WHEN GENDER='male' THEN 1 ELSE 0 END)/COUNT(*),2) MALE_PERC 
+    INTO 
+        PERCENT 
+    FROM 
+        FACEBOOK
+    WHERE
+        AGE>15;
+    DBMS_OUTPUT.PUT_LINE(PERCENT);
+END;
+/
+
+BEGIN
+MALEPERCENTAGE();
+END;
+/
+
+--5. Find how many Percentages of Female users age above 15 use social media?
+
+CREATE OR REPLACE PROCEDURE
+FEMALEPERCENTAGE
+IS
+    PERCENT NUMBER;
+BEGIN
+    SELECT 
+        ROUND(100.0*SUM(CASE WHEN GENDER='female' THEN 1 ELSE 0 END)/COUNT(*),2) FEMALE_PERC 
+    INTO 
+        PERCENT 
+    FROM 
+        FACEBOOK
+    WHERE
+        AGE>15;
+    DBMS_OUTPUT.PUT_LINE(PERCENT);
+END;
+/
+
+BEGIN
+FEMALEPERCENTAGE();
+END;
+/

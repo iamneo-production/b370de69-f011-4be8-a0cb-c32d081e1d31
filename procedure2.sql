@@ -1,0 +1,48 @@
+--1. Count the Male users Born in the year 1999?
+
+CREATE OR REPLACE PROCEDURE
+MALEUSERYEAR
+IS
+    U_COUNT NUMBER;
+BEGIN
+    SELECT 
+        COUNT(*) 
+    INTO 
+        U_COUNT 
+    FROM 
+        FACEBOOK
+    WHERE 
+        GENDER='female' AND DOB_YEAR=1999;
+    DBMS_OUTPUT.PUT_LINE(U_COUNT);
+END;
+/
+
+BEGIN
+MALEUSERYEAR();
+END;
+/
+
+--2. Count the Female users born in years between 1997 and 2000?
+
+CREATE OR REPLACE PROCEDURE
+MALEUSERYEAR
+IS
+    U_COUNT NUMBER;
+BEGIN
+    SELECT 
+        COUNT(*) 
+    INTO 
+        U_COUNT 
+    FROM 
+        FACEBOOK
+    WHERE 
+        GENDER='female' AND (DOB_YEAR BETWEEN 1997 AND 2000);
+    DBMS_OUTPUT.PUT_LINE(U_COUNT);
+END;
+/
+
+BEGIN
+MALEUSERYEAR();
+END;
+/
+
